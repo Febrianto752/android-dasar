@@ -16,5 +16,11 @@ class IntentApp : AppCompatActivity() {
             val moveIntent = Intent(this, MoveActivity::class.java)
             startActivity(moveIntent)
         }
+
+        val btnMoveWithDataActivity: Button = findViewById(R.id.btn_move_activity_data)
+
+        btnMoveWithDataActivity.setOnClickListener {
+
+        }
     }
 }
