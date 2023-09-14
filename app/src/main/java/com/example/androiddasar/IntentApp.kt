@@ -10,6 +10,7 @@ class IntentApp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intent_app)
 
+        // simple intent
         val btnMoveActivity: Button = findViewById(R.id.btn_move_activity)
 
         btnMoveActivity.setOnClickListener {
@@ -17,10 +18,34 @@ class IntentApp : AppCompatActivity() {
             startActivity(moveIntent)
         }
 
+        // intent with pass data
         val btnMoveWithDataActivity: Button = findViewById(R.id.btn_move_activity_data)
 
         btnMoveWithDataActivity.setOnClickListener {
+            val moveWithDataIntent = Intent(this, MoveWithDataActivity::class.java)
+            moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "DicodingAcademy Boy")
+            moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 5)
+            startActivity(moveWithDataIntent)
+        }
 
+        // intent with pass object data
+        val btnMoveWithObject:Button = findViewById(R.id.btn_move_activity_object)
+
+        btnMoveWithObject.setOnClickListener{
+            val person = Person(
+                "DicodingAcademy",
+                5,
+                "academy@dicoding.com",
+                "Bandung"
+            )
+            val moveWithObjectIntent = Intent(this, MoveWithObjectActivity::class.java)
+            moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person)
+
+            // mengirimkan array of object
+            var persons = ArrayList<Person>()
+            moveWithObjectIntent.putParcelableArrayListExtra(MoveWithObjectActivity.EXTRA_PERSONS,persons)
+
+            startActivity(moveWithObjectIntent)
         }
     }
 }
