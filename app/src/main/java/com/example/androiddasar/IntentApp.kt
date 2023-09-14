@@ -1,6 +1,7 @@
 package com.example.androiddasar
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -29,9 +30,9 @@ class IntentApp : AppCompatActivity() {
         }
 
         // intent with pass object data
-        val btnMoveWithObject:Button = findViewById(R.id.btn_move_activity_object)
+        val btnMoveWithObject: Button = findViewById(R.id.btn_move_activity_object)
 
-        btnMoveWithObject.setOnClickListener{
+        btnMoveWithObject.setOnClickListener {
             val person = Person(
                 "DicodingAcademy",
                 5,
@@ -43,9 +44,20 @@ class IntentApp : AppCompatActivity() {
 
             // mengirimkan array of object
             var persons = ArrayList<Person>()
-            moveWithObjectIntent.putParcelableArrayListExtra(MoveWithObjectActivity.EXTRA_PERSONS,persons)
+            moveWithObjectIntent.putParcelableArrayListExtra(
+                MoveWithObjectActivity.EXTRA_PERSONS,
+                persons
+            )
 
             startActivity(moveWithObjectIntent)
+        }
+
+        // implicit intent
+        val btnDialPhone: Button = findViewById(R.id.btn_dial_number)
+        btnDialPhone.setOnClickListener {
+            val phoneNumber = "081210841382"
+            val dialPhoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+            startActivity(dialPhoneIntent)
         }
     }
 }
